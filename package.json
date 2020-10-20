@@ -5,7 +5,7 @@
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/auth0-extensions/auth0-logs-to-provider.git"
+    "url": "git+https://github.com/keylockerbv/auth0-logs-to-provider.git"
   },
   "author": "auth0",
   "license": "MIT",
@@ -97,6 +97,7 @@
     "babel-runtime": "^6.9.2",
     "bluebird": "^3.4.1",
     "body-parser": "^1.15.2",
+    "customerio-node": "^0.7.0",
     "ejs": "^2.4.2",
     "expect": "^1.20.2",
     "express": "^4.17.1",
