@@ -1,0 +1,88 @@
+{
+  "author": "auth0",
+  "type": "cron",
+  "category": "webhook",
+  "initialUrlPath": "/login",
+  "repository": "https://github.com/auth0-extensions/auth0-logs-to-provider",
+  "keywords": [
+    "auth0",
+    "extension"
+  ],
+  "schedule": "0 */5 * * * *",
+  "auth0": {
+    "createClient": true,
+    "onUninstallPath": "/.extensions/on-uninstall",
+    "scopes": "read:logs delete:clients"
+  },
+  "secrets": {
+    "BATCH_SIZE": {
+      "description": "The amount of logs to batch before sending. A single cron execution will send multiple batches. The maximum value is 100.",
+      "default": 100
+    },
+    "START_FROM": {
+      "description": "Checkpoint ID of log to start from."
+    },
+    "SLACK_INCOMING_WEBHOOK_URL": {
+      "description": "Slack Incoming Webhook URL used to report statistics and possible failures"
+    },
+    "SLACK_SEND_SUCCESS": {
+      "description": "This setting will enable verbose notifications to Slack which are useful for troubleshooting",
+      "type": "select",
+      "allowMultiple": false,
+      "default": "false",
+      "options": [
+        {
+          "value": "false",
+          "text": "No"
+        },
+        {
+          "value": "true",
+          "text": "Yes"
+        }
+      ]
+    },
+    "AUTH0_API_ENDPOINTS": {
+      "description": "Allows you to filter specific API endpoints, comma separated.",
+      "example": "e.g.: users, connections, rules, emails, stats, clients, tenants"
+    },
+    "WEBHOOK_URL": {
+      "required": true,
+      "type": "text"
+    },
+    "AUTHORIZATION": {
+      "description": "Authorization Header (optional).",
+      "example": "Basic dm9yZGVsOnZvcmRlbA==",
+      "type": "text"
+    },
+    "SEND_AS_BATCH": {
+      "description": "If enabled, extension will send entire batch in one request. Otherwise, it will send requests one by one.",
+      "type": "select",
+      "allowMultiple": false,
+      "default": "true",
+      "options": [
+        {
+          "value": "true",
+          "text": "Enabled"
+        },
+        {
+          "value": "false",
+          "text": "Disabled"
+        }
+      ]
+    },
+    "WEBHOOK_CONCURRENT_CALLS": {
+      "description": "The maximum concurrent calls that will be made to your webhook",
+      "default": 5,
+      "visibleIf": {
+        "SEND_AS_BATCH": "false"
+      }
+    }
+  },
+  "title": "Auth0 Management API Webhooks",
+  "name": "auth0-management-api-webhooks",
+  "version": "2.3.3",
+  "preVersion": "2.3.2",
+  "description": "Allows you to define webhooks for Auth0's Management API. It will go through the audit logs and call a webhook for specific events.",
+  "docsUrl": "https://auth0.com/docs/extensions/management-api-webhooks",
+  "logoUrl": "https://cdn.auth0.com/extensions/auth0-webhooks/assets/logo.svg"
+}
