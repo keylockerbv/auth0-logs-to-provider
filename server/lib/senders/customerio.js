@@ -17,8 +17,7 @@ const eventMap = {
 module.exports = () => {
   const cio = new CIO(
     config("CUSTOMER_IO_SITE_ID"),
-    config("CUSTOMER_IO_API_KEY"),
-    [defaults]
+    config("CUSTOMER_IO_API_KEY")
   );
 
   return (logs, callback) => {
@@ -83,3 +82,4 @@ module.exports = () => {
     );
   };
 };
+module.exports();
