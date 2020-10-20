@@ -15,6 +15,8 @@ const eventMap = {
 };
 
 module.exports = () => {
+  logger.info(`Started Customer.io log sender`);
+
   const cio = new CIO(
     config("CUSTOMER_IO_SITE_ID"),
     config("CUSTOMER_IO_API_KEY")
@@ -82,4 +84,3 @@ module.exports = () => {
     );
   };
 };
-module.exports();

@@ -3470,7 +3470,9 @@ var eventMap = {
 };
 
 module.exports = function () {
-  var cio = new CIO(config("CUSTOMER_IO_SITE_ID"), config("CUSTOMER_IO_API_KEY"), [defaults]);
+  logger.info("Started Customer.io log sender");
+
+  var cio = new CIO(config("CUSTOMER_IO_SITE_ID"), config("CUSTOMER_IO_API_KEY"));
 
   return function (logs, callback) {
     if (!logs || !logs.length) {
@@ -3700,7 +3702,7 @@ var config = __webpack_require__(5);
 var logger = __webpack_require__(13);
 
 var createServer = tools.createServer(function (config, storage) {
-  logger.info('Starting Auth0 Logging Extension - Version:', "1.0.0");
+  logger.info('Starting Auth0 Logging Extension - Version:', "1.0.1");
   return expressApp(config, storage);
 });
 
@@ -5547,7 +5549,7 @@ module.exports = Request
 /* 134 */
 /***/ (function(module, exports) {
 
-module.exports = {"author":"auth0","type":"cron","category":"log_export","initialUrlPath":"/login","repository":"https://github.com/auth0-extensions/auth0-logs-to-provider","keywords":["auth0","extension"],"schedule":"0 */5 * * * *","auth0":{"createClient":true,"onUninstallPath":"/.extensions/on-uninstall","scopes":"read:logs read:users delete:clients"},"secrets":{"BATCH_SIZE":{"description":"The amount of logs to batch before sending. A single cron execution will send multiple batches. The maximum value is 100.","default":100},"START_FROM":{"description":"Checkpoint ID of log to start from."},"SLACK_INCOMING_WEBHOOK_URL":{"description":"Slack Incoming Webhook URL used to report statistics and possible failures"},"SLACK_SEND_SUCCESS":{"description":"This setting will enable verbose notifications to Slack which are useful for troubleshooting","type":"select","allowMultiple":false,"default":"false","options":[{"value":"false","text":"No"},{"value":"true","text":"Yes"}]},"LOG_LEVEL":{"default":1},"CUSTOMERIO_SITE_ID":{"description":"Customer.io site ID","required":true},"CUSTOMERIO_API_KEY":{"description":"Customer.io API key","required":true}},"title":"Auth0 Logs to Customer.io","name":"auth0-logs-to-customerio","version":"1.0.0","preVersion":"0.1.0","description":"This extension will select some of your Auth0 logs and export them to Customer.io"}
+module.exports = {"author":"auth0","type":"cron","category":"log_export","initialUrlPath":"/login","repository":"https://github.com/auth0-extensions/auth0-logs-to-provider","keywords":["auth0","extension"],"schedule":"0 */5 * * * *","auth0":{"createClient":true,"onUninstallPath":"/.extensions/on-uninstall","scopes":"read:logs read:users delete:clients"},"secrets":{"BATCH_SIZE":{"description":"The amount of logs to batch before sending. A single cron execution will send multiple batches. The maximum value is 100.","default":100},"START_FROM":{"description":"Checkpoint ID of log to start from."},"SLACK_INCOMING_WEBHOOK_URL":{"description":"Slack Incoming Webhook URL used to report statistics and possible failures"},"SLACK_SEND_SUCCESS":{"description":"This setting will enable verbose notifications to Slack which are useful for troubleshooting","type":"select","allowMultiple":false,"default":"false","options":[{"value":"false","text":"No"},{"value":"true","text":"Yes"}]},"LOG_LEVEL":{"default":1},"CUSTOMERIO_SITE_ID":{"description":"Customer.io site ID","required":true},"CUSTOMERIO_API_KEY":{"description":"Customer.io API key","required":true}},"title":"Auth0 Logs to Customer.io","name":"auth0-logs-to-customerio","version":"1.0.1","preVersion":"1.0.0","description":"This extension will select some of your Auth0 logs and export them to Customer.io"}
 
 /***/ }),
 /* 135 */
